@@ -13,6 +13,26 @@ def build_sample_tree():
     nodes[8].left = nodes[16]
     return nodes[1]  # root
 
+def mirror_tree(node):
+    if node is None:
+        return None
+    new_node = TreeNode(node.val)
+    new_node.left = mirror_tree(node.right)
+    new_node.right = mirror_tree(node.left)
+    return new_node
+
+def print_preorder(node):
+    if node:
+        print(node.val, end=' ')
+        print_preorder(node.left)
+        print_preorder(node.right)
+
 if __name__ == '__main__':
-    tree = build_sample_tree()
-    print(tree.val)  # prints 1
+    original = build_sample_tree()
+    mirror = mirror_tree(original)
+
+    print("Original tree (pre-order):")
+    print_preorder(original)
+
+    print("\nMirrored tree (pre-order):")
+    print_preorder(mirror)
