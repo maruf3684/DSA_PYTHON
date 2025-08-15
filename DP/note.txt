@@ -1,0 +1,16 @@
+Main types of DP
+	1.	1D DP → problems depending on a single dimension (e.g., Fibonacci, climbing stairs).
+	2.	2D DP → depends on two parameters (e.g., strings: palindrome, edit distance).
+	3.	Knapsack-style DP → capacity + items decisions.
+	4.	Graph DP → shortest paths, longest paths in DAG, etc.
+	5.	Bitmask DP → DP over subsets.
+	6.	Digit DP → counting numbers with certain properties.
+
+Rule of thumb for spotting DP
+
+If your problem:
+	•	Has choices at each step,
+	•	Has overlapping subproblems,
+	•	Needs the best/fastest/cheapest solution,
+	•	And you can describe it as “state + decision” →
+…it’s a strong DP candidate.
