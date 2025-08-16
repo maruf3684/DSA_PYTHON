@@ -1,0 +1,76 @@
+Toptal DSA Prep Sheet
+
+Legend:
+	•	🔥 High Priority → Must master
+	•	⚡ Medium Priority → Important
+	•	⭐ Low Priority → Optional
+
+1️⃣ Arrays & Strings
+Two Sum - 🔥
+Subarray Sum Equals K - 🔥
+Maximum Subarray (Kadane) - 🔥
+Longest Substring Without Repeating Characters - 🔥
+Merge Intervals - ⚡
+Rotate Image / Matrix - ⚡
+Move Zeroes - ⭐
+Product of Array Except Self - ⚡
+
+2️⃣ Linked Lists
+Reverse Linked List - 🔥
+Detect Cycle (Floyd’s) - 🔥
+Merge Two Sorted Lists - 🔥
+Remove N-th Node from End - ⚡
+Palindrome Linked List - ⚡
+Intersection of Two Lists - ⚡
+Flatten Multilevel Doubly LL - ⭐
+
+3️⃣ Stacks & Queues
+Valid Parentheses - 🔥
+Implement Queue using Stacks - ⚡
+Daily Temperatures - ⚡
+Sliding Window Maximum - 🔥
+Next Greater Element - ⚡
+Evaluate Reverse Polish Notation - ⭐
+
+4️⃣ Trees & Graphs
+Binary Tree Traversals - 🔥
+Symmetric / Mirror Tree - ⚡
+Max Depth / Height - 🔥
+Lowest Common Ancestor - ⚡
+Number of Islands - 🔥
+Course Schedule / Topological Sort - ⚡
+Clone Graph - ⭐
+Word Ladder - ⭐
+
+5️⃣ Dynamic Programming
+Coin Change - 🔥
+Longest Increasing Subsequence - 🔥
+House Robber / Climbing Stairs - ⚡
+Unique Paths - ⚡
+Word Break - ⚡
+Longest Palindromic Substring - ⭐
+Edit Distance - ⭐
+
+6️⃣ Backtracking
+N-Queens - 🔥
+Permutations - 🔥
+Subsets / Power Set - ⚡
+Combination Sum - ⚡
+Generate Parentheses - ⚡
+Sudoku Solver - ⭐
+
+7️⃣ Bit Manipulation
+Single Number - 🔥
+Counting Bits - ⚡
+Reverse Bits - ⭐
+Hamming Distance - ⚡
+Power of Two - 🔥
+Number of 1 Bits - ⚡
+
+How to Use This Sheet:
+	1.	Start with all 🔥 problems.
+	2.	Solve under 25–30 min per problem.
+	3.	Move to ⚡ problems once comfortable.
+	4.	Optional ⭐ problems for mastery.
+	5.	Practice mock live interviews.
+	6.	Prepare stack + project skills for take-home project.
