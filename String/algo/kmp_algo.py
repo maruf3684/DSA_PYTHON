@@ -1,7 +1,8 @@
 s = ['A','B','C','A','B','D','A','B','C','A','B','C','A','B','D']
-s = "acccbaaacccbaac"
-#ans = "ABCABD"
+k = [ 0,  0,  0,  1,  2,  0,  1,  2,  3,  4,  5,  3,  4,  5,  6]
 
+
+s = "abcabdabcabcabd"
 
 def kmp_algo(s):
     prefix_pointer = 0
@@ -19,6 +20,7 @@ def kmp_algo(s):
             else:
                 match_length_tracker_array.append(0)
                 suffix_pointer += 1
+    print(match_length_tracker_array)
     return s[:match_length_tracker_array[-1]]
 
 print(kmp_algo(s))
