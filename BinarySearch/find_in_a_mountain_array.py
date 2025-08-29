@@ -5,7 +5,7 @@ def peak_index(arr):
     ans = -1
     left = 0
     right = len(arr) - 1
-    while left <= right:
+    while left < right:
         mid = left + (right - left) // 2
 
         if mid < len(arr) and arr[mid] < arr[mid+1]:
