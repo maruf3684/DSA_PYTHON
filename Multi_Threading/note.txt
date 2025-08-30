@@ -1,0 +1,124 @@
+📘 Python Concurrency & Parallelism Roadmap (Python 3.13, GIL-free)
+
+1. Concurrency Fundamentals
+
+1.1. Concurrency vs Parallelism
+1.2. CPU-bound vs I/O-bound tasks
+1.3. Threads vs Processes — memory, overhead, context switching
+1.4. Python 3.13 GIL-free mode
+1.5. When to choose threads vs processes
+
+⸻
+
+2. Threading Deep Dive
+
+2.1. Thread Basics
+	•	threading.Thread
+	•	Daemon vs Non-daemon threads
+	•	Thread lifecycle: start, join, alive, run
+	•	Naming threads
+
+2.2. Thread Synchronization
+	•	Race conditions & atomicity
+	•	Lock, RLock, Semaphore, BoundedSemaphore
+	•	Event objects
+	•	Condition variables
+	•	Barrier for multi-thread coordination
+
+2.3. Thread Communication
+	•	Shared memory variables
+	•	queue.Queue (thread-safe queue)
+	•	Producer-consumer patterns
+	•	Thread-safe data structures
+
+2.4. High-Level Thread APIs
+	•	concurrent.futures.ThreadPoolExecutor
+	•	submit() and map()
+	•	Handling futures (Future objects)
+	•	Thread cancellation & timeouts
+	•	Exception handling in threads
+
+2.5. Advanced Threading Patterns
+	•	Worker threads & task queues
+	•	Thread-local storage (threading.local)
+	•	Reentrant and recursive thread patterns
+	•	Debugging deadlocks and performance bottlenecks
+	•	Thread profiling (cProfile, time)
+
+2.6. Thread Use Cases in Python 3.13
+	•	Parallel I/O tasks
+	•	CPU-bound tasks now possible (thanks to no GIL)
+	•	Real-world examples: web scraping, simulations, ML preprocessing
+
+⸻
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+3. Multiprocessing Deep Dive
+
+3.1. Process Basics
+	•	multiprocessing.Process
+	•	Daemon vs Non-daemon processes
+	•	Process lifecycle: start, join, terminate
+	•	CPU core utilization & affinity
+
+3.2. Inter-Process Communication (IPC)
+	•	multiprocessing.Queue
+	•	Pipe communication
+	•	multiprocessing.Manager for shared objects
+	•	Shared memory: Value and Array
+	•	Synchronization: Lock, RLock, Semaphore, Event
+
+3.3. Process Pools
+	•	multiprocessing.Pool basics (apply, map, imap)
+	•	Async results: apply_async, map_async
+	•	concurrent.futures.ProcessPoolExecutor
+	•	Worker initialization in pools
+	•	Error handling & timeouts
+
+3.4. Advanced Multiprocessing
+	•	Shared memory segments (multiprocessing.shared_memory)
+	•	Fork vs Spawn vs Forkserver start methods
+	•	Process synchronization patterns
+	•	Debugging multiprocessing applications
+	•	Profiling CPU usage across processes
+
+3.5. Multiprocessing Use Cases
+	•	CPU-bound computation (image/video processing, ML training)
+	•	Data pipelines & batch processing
+	•	Parallel scientific simulations
+	•	Hybrid models with threads + processes
+
+⸻
+
+4. Hybrid & Modern Concurrency
+
+4.1. Combining threads + processes
+4.2. Producer-consumer pipelines with threads & processes
+4.3. Asyncio vs threads vs processes
+4.4. Third-party frameworks: joblib, ray, dask
+4.5. Distributed parallelism in Python 3.13
+
+⸻
+
+5. Performance & Best Practices
+
+5.1. Profiling concurrent programs (cProfile, time, perf)
+5.2. Debugging deadlocks, race conditions, and starvation
+5.3. Graceful shutdown & signal handling
+5.4. Error propagation in threads and processes
+5.5. Optimizing CPU & memory usage
+5.6. Design patterns for high-performance parallel apps
+
+⸻
+
+6. Hands-On Projects
+
+6.1. Multi-threaded CPU-bound computation (matrix multiplication)
+6.2. Multi-threaded I/O-bound app (web scraping, API calls)
+6.3. Multi-process image/video processing pipeline
+6.4. Hybrid thread + process data pipeline
+6.5. Benchmarking threads vs processes vs asyncio
+6.6. Real-world scenario: multi-core ML preprocessing

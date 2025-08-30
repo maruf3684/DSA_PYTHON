@@ -1,0 +1,5 @@
+✅ Summary
+	•	Race conditions → solved by Lock, RLock, Semaphore, BoundedSemaphore
+	•	Event → simple signaling
+	•	Condition → producer-consumer coordination
+	•	Barrier → multi-thread synchronization point
