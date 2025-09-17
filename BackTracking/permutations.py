@@ -8,8 +8,8 @@ def make_permutations(nums,i,sub_array,ans):
     if i == 0:
         ans.append([*sub_array])
         return
-    for item in nums:
-        sub_array.append(item)
+    for item in range(0,i,-1):
+        sub_array.append(nums[item])
         make_permutations(nums,i-1,sub_array,ans)
         sub_array.pop()
 
