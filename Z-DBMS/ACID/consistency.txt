@@ -1,0 +1,82 @@
+🔹 What Consistency really means in DB
+	•	It’s about the database itself enforcing correctness, not relying only on app logic.
+	•	After any committed transaction, the database must remain in a valid state according to rules, constraints, triggers, and data types.
+	•	If a transaction would violate integrity rules, the DB rejects or rolls it back automatically.
+
+⸻
+
+🔹 Simple Real Examples
+	1.	Data Type Consistency
+	•	Column age INT.
+	•	If you try to insert "twenty" → DB rejects.
+	•	Keeps data valid.
+
+	2.	Primary Key / Uniqueness
+	•	user_id must be unique.
+	•	If two transactions try to insert the same ID, the DB enforces uniqueness.
+	•	Even if your app forgets to check, DB protects you.
+
+	3.	Foreign Key
+	•	order.customer_id must exist in customers table.
+	•	If you try to insert an order for a non-existing customer → DB blocks it.
+
+	4.	Check Constraint
+	•	Balance >= 0.
+	•	Even if app logic misses this check, DB constraint ensures no invalid row is stored.
+
+⸻
+
+🔹 Why not only in Application Logic?
+	•	If you only rely on application checks → race conditions or bugs can cause invalid data.
+	•	DB consistency rules are the last line of defense.
+	•	Example: Two microservices inserting data at the same time → only DB constraint can prevent duplicate IDs.
+
+⸻
+
+🔹 Easy Way to Remember
+
+👉 Consistency = “DB police” 👮‍♂️ that enforces the rules, no matter what your app does.
+	•	If rule is broken → transaction is rejected, DB stays valid.
+
+
+
+.........................................NO SQL....................................................................
+
+🔹 Consistency in NoSQL
+	1.	Schema-less / Flexible Schema
+	•	Many NoSQL databases (MongoDB, CouchDB) do not enforce strict schemas by default.
+	•	Example: You can insert documents with missing or extra fields.
+
+	2.	No Built-in Constraints
+	•	No foreign keys, no automatic uniqueness checks (unless configured).
+	•	Example: Two documents could have the same user_id if app logic doesn’t prevent it.
+
+	3.	Eventual Consistency
+	•	Distributed NoSQL DBs (Cassandra, DynamoDB) may allow temporary inconsistencies for speed.
+	•	Example: A write on one replica might take time to propagate → another node might read “old” data.
+
+	4.	Optional Features
+	•	Some NoSQL DBs can enforce constraints:
+	•	MongoDB → unique index, validation rules
+	•	Cassandra → lightweight transactions (LWT)
+	•	But it’s not automatic for every data type or relationship like in RDBMS.
+
+⸻
+
+🔹 Example
+
+RDBMS (ACID):
+	•	Table accounts has balance >= 0 constraint.
+	•	Two concurrent transfers → DB prevents negative balances automatically.
+
+NoSQL (MongoDB default):
+	•	Document {account_id:1, balance:-50} can be inserted if app logic doesn’t prevent it.
+	•	Constraint must be explicitly defined (validator) → otherwise DB does not enforce it.
+
+⸻
+
+🔹 Interview Tip
+
+✅ RDBMS = Consistency guaranteed by DB.
+✅ NoSQL = Consistency often depends on configuration + app logic.
+	•	This is why NoSQL often trades strict consistency for scalability and speed.

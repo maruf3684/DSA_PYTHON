@@ -1,0 +1,47 @@
+🔹 Durability (ACID Property)
+	•	Once a transaction is committed, changes are permanent.
+	•	Survives power loss, crash, or system failure.
+	•	Ensured using transaction logs / write-ahead logging (WAL) / journaling.
+	•	RDBMS: strict guarantee → commit = data is safe.
+	•	NoSQL: durability often configurable (may trade durability for speed).
+	•	Example:
+	•	Bank transfer committed → even if server crashes, money movement is not lost.
+
+
+...................................................NO SQL..............................................
+
+🔹 Why NoSQL Can Fail Durability
+	•	Memory-first storage
+	•	Some NoSQL DBs (e.g., Redis, Memcached) keep data in RAM for speed.
+	•	If crash happens before data is flushed to disk → data is lost.
+	•	Asynchronous writes
+	•	Many NoSQL systems confirm “write success” before fsync (disk flush).
+	•	Example: MongoDB can acknowledge writes without journaling.
+	•	Eventual consistency model
+	•	In distributed NoSQL (Cassandra, DynamoDB, etc.), a write might be accepted on one replica but not yet replicated to others.
+	•	Crash/node failure before replication → data loss.
+	•	Configurable durability levels
+	•	MongoDB writeConcern = {w:1} (acknowledge from 1 node) can lose data if that node fails before syncing to others.
+	•	Stronger durability needs {w:majority, j:true} but with performance cost.
+	•	Replication lag
+	•	In systems with async replication, primary crash can cause committed writes to vanish if they didn’t reach replicas yet.
+
+⸻
+
+🔹 Example Scenarios
+	1.	Redis (default mode)
+	•	Writes stored in memory, disk flush every few seconds.
+	•	Crash → last few seconds of writes lost.
+
+	2.	MongoDB
+	•	Insert with writeConcern:1 → acknowledged after memory write.
+	•	If server crashes before journal/disk write → lost.
+
+	3.	Cassandra
+	•	Write goes to one replica, acknowledged.
+	•	Before replication to other nodes, that replica dies → lost.
+
+
+
+
+

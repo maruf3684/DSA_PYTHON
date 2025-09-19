@@ -1,0 +1,22 @@
+🔹 ACID vs NoSQL (Quick Cheat Sheet)
+
+1. Atomicity
+	•	RDBMS: Full guarantee — all-or-nothing, multi-row safe.
+	•	NoSQL: Usually single-document atomic; multi-document requires special config (MongoDB transactions, Cassandra LWT).
+
+2. Consistency
+	•	RDBMS: Enforced by DB constraints, triggers, schema.
+	•	NoSQL: Optional; may rely on app logic or configurable rules.
+
+3. Isolation
+	•	RDBMS: Supports levels (Read Uncommitted → Serializable) to prevent concurrency issues.
+	•	NoSQL: Weak / eventual; concurrent reads may see intermediate states.
+
+4. Durability
+	•	RDBMS: Guaranteed once committed; survives crashes.
+	•	NoSQL: Depends on config (memory-first vs disk, replication); recent writes can be lost.
+
+💡 Key Takeaway:
+
+RDBMS = strong ACID guarantees.
+NoSQL = trades strict ACID for speed, scalability, and distributed performance.

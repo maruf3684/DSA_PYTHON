@@ -1,0 +1,51 @@
+🔹 Isolation Levels (from weakest → strongest)
+	1.	Read Uncommitted
+	•	Allows dirty reads (can see uncommitted changes from other transactions).
+	•	Fastest but least safe.
+	•	Problems: Dirty Read, Non-Repeatable Read, Phantom Read.
+
+	2.	Read Committed
+	•	Prevents dirty reads (only reads committed data).
+	•	Default in many databases (like Oracle, PostgreSQL).
+	•	Problems: Non-Repeatable Read, Phantom Read.
+
+	3.	Repeatable Read
+	•	Ensures same row returns consistent values within a transaction.
+	•	Prevents dirty & non-repeatable reads.
+	•	Problems: Phantom Read (new rows can appear).
+	•	Default in MySQL (InnoDB).
+
+	4.	Serializable
+	•	Strictest level: transactions execute as if sequentially.
+	•	Prevents dirty, non-repeatable, and phantom reads.
+	•	Safest but slowest (uses locks or MVCC with validation).
+
+
+
+	🔹 Trade-off
+	•	Higher isolation = more consistency, less concurrency.
+	•	Lower isolation = better performance, more anomalies possible.
+
+
+
+.........................................................No SQL...................................................
+2️⃣ Isolation
+	•	RDBMS: Supports multiple levels of isolation (Read Uncommitted → Serializable) to control concurrency anomalies.
+	•	NoSQL:
+	•	Isolation is weaker or configurable.
+	•	Many NoSQL DBs are eventually consistent, meaning concurrent reads may see intermediate states.
+	•	Example: Cassandra uses read-your-own-write option, but in general two clients can read different versions of the same row temporarily.
+
+⸻
+
+3️⃣ Consistency
+	•	RDBMS: Always enforced by DB (schema, constraints, foreign keys).
+	•	NoSQL: Optional. May be violated unless explicitly configured.
+
+⸻
+
+4️⃣ Durability
+	•	RDBMS: Guaranteed once committed.
+	•	NoSQL: Depends on config (memory-first vs disk, replication). Can lose recent writes on crash.
+
+⸻

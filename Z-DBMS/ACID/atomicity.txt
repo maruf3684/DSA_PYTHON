@@ -1,0 +1,21 @@
+🔹 Points (short)
+	1.	All-or-nothing → transaction fully done or not at all.
+	2.	No partial changes.
+	3.	Rollback if error.
+	4.	Ensures data safety on failure.
+
+⸻
+
+🔹 Example (short)
+
+💰 Bank Transfer: Debit A (–100), Credit B (+100).
+	•	If credit fails → debit is undone → no money lost.
+
+
+...............................NO SQL...........................
+1️⃣ Atomicity
+	•	RDBMS: Full guarantee — all-or-nothing. If any part of transaction fails, DB rolls back.
+	•	NoSQL:
+	•	Many NoSQL DBs do not support multi-document transactions by default.
+	•	Example: MongoDB supports multi-document transactions only in replica sets (v4+), but earlier versions or simpler NoSQL DBs (Cassandra, DynamoDB without LWT) may partially apply changes.
+	•	Single-document operations are usually atomic.
