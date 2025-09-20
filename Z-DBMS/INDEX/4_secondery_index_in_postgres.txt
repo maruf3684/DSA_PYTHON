@@ -1,0 +1,22 @@
+Heap Table (unordered pages):
+
+Page 1: Slot1->(1,101,Alice), Slot2->(4,104,David), Slot3->(7,107,Grace)
+Page 2: Slot1->(2,102,Bob), Slot2->(3,103,Charlie), Slot3->(5,105,Emma)
+Page 3: Slot1->(6,106,Frank), Slot2->(8,108,Henry), Slot3->(9,109,Ivy), Slot4->(10,110,Jack)
+
+
+                 [105]                 <-- root
+            /             \
+[101,102,103,104]      [105,106,107,108,109,110]  <-- leaf nodes (sorted by roll)
+
+Leaf Nodes:
+101 -> Page1, Slot1  (Alice) [Name are for my understanding not actually stored here]
+102 -> Page2, Slot1  (Bob)
+103 -> Page2, Slot2  (Charlie)
+104 -> Page1, Slot2  (David)
+105 -> Page2, Slot3  (Emma)
+106 -> Page3, Slot1  (Frank)
+107 -> Page1, Slot3  (Grace)
+108 -> Page3, Slot2  (Henry)
+109 -> Page3, Slot3  (Ivy)
+110 -> Page3, Slot4  (Jack)

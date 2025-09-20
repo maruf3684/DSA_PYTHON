@@ -1,0 +1,42 @@
+MySQL InnoDB index oriented table:
+
+                   [5]                  <-- root (PK order)
+              /            \
+       [3]                     [8]      <-- intermediate nodes
+     /     \                 /       \
+[1,2,3]   [4,5]         [6,7,8]     [9,10]   <-- leaf nodes
+
+Leaf Nodes (Full rows):
+1 -> (1,101,Alice)
+2 -> (2,102,Bob)
+3 -> (3,103,Charlie)
+4 -> (4,104,David)
+5 -> (5,105,Emma)
+6 -> (6,106,Frank)
+7 -> (7,107,Grace)
+8 -> (8,108,Henry)
+9 -> (9,109,Ivy)
+10-> (10,110,Jack)
+
+
+
+Scondary Index on roll (B+ Tree leaf nodes store roll + PK pointer):
+
+
+               [105]                  <-- root
+            /             \
+[101,102,103,104]      [105,106,107,108,109,110]  <-- leaf nodes
+
+Leaf Nodes (roll + PK pointer):
+101 -> PK=1
+102 -> PK=2
+103 -> PK=3
+104 -> PK=4
+105 -> PK=5
+106 -> PK=6
+107 -> PK=7
+108 -> PK=8
+109 -> PK=9
+110 -> PK=10
+
+

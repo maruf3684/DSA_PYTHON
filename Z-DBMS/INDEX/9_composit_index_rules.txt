@@ -1,0 +1,41 @@
+🔹 Rule of Thumb
+	1.	Equality columns first (most selective first)
+	2.	Range columns last
+	3.	Lexicographic order inside leaf nodes allows efficient range scans
+
+
+🔹 Composite Key Concept
+	•	Suppose index is (a, b, c)
+	•	Each key in the B+ Tree is a tuple: (a,b,c)
+	•	Sorting is lexicographic (dictionary order):
+
+	(a1,b1,c1) < (a1,b1,c2) < (a1,b2,c1) < (a2,b1,c1)
+
+	•	Order of columns in the index determines sorting priority:
+	1.	First column (a) → highest priority
+	2.	Second column (b) → used to break ties when a is equal
+	3.	Third column (c) → used to break ties when a and b are equal
+
+
+
+EX:
+                        [ (9,9,0) | (10,0,0) ]  Root (Page1)
+                         /           |          \
+                  Page2 Leaf       Page3 Leaf   Page4 Leaf
+          [ (9,8,10) | (9,8,20) ]  [ (9,9,5) ] [ (10,1,1) | (10,2,5) ]
+
+
+
+Query: WHERE a=9 AND b=8 AND c BETWEEN 10 AND 20
+	1.	Start at Root [ (9,9,0) | (10,0,0) ]
+	•	(9,8,?) < (9,9,0) → go ChildPage2 → Page2
+	2.	Leaf Page2: [ (9,8,10), (9,8,20) ]
+	•	Scan sequentially → pick keys in c BETWEEN 10 AND 20
+	•	Collect TIDs → fetch heap rows → (1,9,8,10),(2,9,8,20)
+
+
+🔹 Key Takeaways
+	•	B+ Tree stores tuples (a,b,c) in internal nodes and leaf nodes
+	•	Sorting is lexicographic → first column is major, second breaks ties, third breaks further ties
+	•	Leaf nodes linked → range scans efficient
+	•	Internal nodes guide search → always compare tuples lexicographically

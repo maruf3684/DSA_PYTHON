@@ -1,0 +1,64 @@
+
+
+•	Postgres: Table = heap (unordered pages), primary key = separate B+ Tree index → table itself is not index-organized.
+•	MySQL InnoDB: Table = clustered B+ Tree organized by primary key → leaf nodes store full row data, table itself = index-oriented.
+
+Ex postgres:
+
+File: users.ibd   (MySQL InnoDB example)
+Page size: 16KB
+-------------------------------------------
+| Page 1 | Page 2 | Page 3 | ...           |
+-------------------------------------------
+
+Page 1 (holds rows 1–4)
++-----------------------------+
+| Row 1: (id=1,  Alice)       |
+| Row 2: (id=2,  Bob)         |
+| Row 3: (id=3,  Charlie)     |
+| Row 4: (id=4,  David)       |
+| ... free space ...          |
++-----------------------------+
+
+Page 2 (holds rows 5–8)
++-----------------------------+
+| Row 5: (id=5,  Emma)        |
+| Row 6: (id=6,  Frank)       |
+| Row 7: (id=7,  Grace)       |
+| Row 8: (id=8,  Henry)       |
+| ... free space ...          |
++-----------------------------+
+
+Page 3 (holds rows 9–10)
++-----------------------------+
+| Row 9:  (id=9,  Ivy)        |
+| Row 10: (id=10, Jack)       |
+| ... free space ...          |
++-----------------------------+
+
+
+🔹 Key Notes
+	•	Each file = contains many pages.
+	•	Each page = contains several rows + some free space.
+	•	Free space is used for new inserts until the page fills up.
+	•	If a row doesn’t fit (big text/blob), DB may store part of it in an overflow page.
+
+
+🔹 Order of Rows in Heap Storage (default table storage)
+	•	In heap tables (default in PostgreSQL, MySQL InnoDB, Oracle):
+	•	No guaranteed order.
+	•	Rows are inserted wherever free space is available inside a page.
+	•	If you DELETE a row, the slot may be reused by future inserts.
+	•	That’s why: SELECT * FROM users : may return rows in any order unless you add ORDER BY.
+
+
+🔹 Example: After Delete + Insert
+Suppose we DELETE Row 2 (Bob) and later insert (id=11, Kate):
+
+Page 1
++----------------------------+
+| Row 1: (id=1, Alice)       |
+| Row 11:(id=11, Kate) <-- reused Bob’s slot
+| Row 3: (id=3, Charlie)     |
+| Row 4: (id=4, David)       |
++----------------------------+

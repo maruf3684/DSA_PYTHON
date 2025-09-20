@@ -1,0 +1,59 @@
+
+Complixity:
+| Operation | Postgres (Heap + Secondary Index)           | MySQL InnoDB (Clustered PK Table)       | Notes |
+|-----------|-------------------------------------------- |---------------------------------------- -|-------|
+| Search    | Secondary Index → B+ Tree → O(log n)        | Secondary Index → B+ Tree → O(log n)    | MySQL requires extra PK lookup |
+|           | Heap fetch → O(1)                           | Clustered PK → B+ Tree → O(log n)       | Postgres fetch direct using TID |
+
+| Insert    | Heap insert → O(1)                          | Clustered PK insert → O(log n)          | May cause page splits |
+|           | Secondary Index update → O(log n)           | Secondary Index insert → O(log n)       | Tree may rebalance |
+
+| Delete    | Heap delete → O(1)                          | Clustered PK delete → O(log n)          | Tree may merge pages |
+|           | Secondary Index update → O(log n)           | Secondary Index delete → O(log n)       | Rebalance if needed |
+
+
+Advantage: Disadvantage
+
+| Feature/DB        | Postgres (Heap Table)                                     | MySQL InnoDB (Clustered PK Table)                     |
+|------------------|---------------------------------------------------------  -|------------------------------------------------------|
+| Table Storage     | Heap pages (unordered)                                   | Clustered B+ Tree (rows stored by PK)               |
+| Primary Key       | Separate unique index (B+ Tree)                          | Table itself = clustered index                       |
+| Secondary Index   | Key + TID (heap location) → 1 fetch                      | Key + PK → extra tree lookup to fetch row           |
+| Search            | O(log n) + O(1) heap access                               | O(log n) + O(log n) tree lookup                      |
+| Insert            | Heap insert O(1), secondary index O(log n)               | Clustered PK insert O(log n), secondary index O(log n), may split pages |
+| Delete            | Heap delete O(1), secondary index O(log n)               | Clustered PK delete O(log n), secondary index O(log n), may merge pages |
+| Range Queries     | Slower if heap unordered, may need to scan multiple pages | Fast, rows stored sequentially by PK                 |
+| Disk Layout       | Unordered, scattered pages                                 | Ordered by PK, reduces fragmentation                |
+| Advantages        | Simple heap, fast single-row insert, direct secondary index access | Fast PK/range queries, clustered storage benefits, efficient for OLTP |
+| Disadvantages     | Range queries can be slow, rows scattered, may need CLUSTER for ordering | Secondary index slightly slower (log n + log n), page splits on insert/delete |
+| When to Use       | When fast inserts and flexible schema are needed         | When fast PK/range access, joins, and transactional consistency are critical |
+
+
+
+Why range query is faster in mysql?
+🔹 Clustered PK B+ Tree (Leaf Nodes store full row)
+                     [5]                        <-- root
+               /               \
+          [3]                     [8]           <-- intermediate nodes
+       /       \               /       \
+[1,2,3]    [4,5]        [6,7,8]      [9,10]     <-- leaf nodes (full row)
+
+Leaf Nodes:
+[1,2,3] -> (1,Alice), (2,Bob), (3,Charlie)
+[4,5]   -> (4,David), (5,Emma)
+[6,7,8] -> (6,Frank), (7,Grace), (8,Henry)
+[9,10]  -> (9,Ivy), (10,Jack)
+
+
+🔹 Range Query Example
+SELECT * FROM users WHERE id BETWEEN 3 AND 7;
+
+
+Step-by-step logic:
+	1.	Go to root → choose branch [3] → go to leaf [1,2,3]
+	•	Fetch id=3 → (3,Charlie)
+	2.	Traverse sequential leaf nodes → [4,5] → fetch id=4,5 → (4,David), (5,Emma)
+	3.	Continue sequential leaf node → [6,7,8] → fetch id=6,7 → (6,Frank), (7,Grace)
+	4.	Stop at id=7
+
+✅ Only leaf nodes [1,2,3], [4,5], [6,7,8] accessed → minimal disk reads

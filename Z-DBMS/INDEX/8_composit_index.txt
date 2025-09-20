@@ -1,0 +1,55 @@
+🔹 B+ Tree (Composite Index (amount,id))
+
+                                [300,6]                            <-- root
+                               /       \
+                     [200,4]                 [400,8]               <-- intermediate nodes
+                    /       \               /       \
+          [100,1][100,2]   [200,3][200,4]   [300,5][300,6] [400,7][400,8] [500,9][500,10]   <-- leaf nodes
+
+
+Leaf Nodes with TID (heap pointers)
+
+[100,1] -> Page1, Slot1 -> (1,100,Alice)
+[100,2] -> Page1, Slot2 -> (2,100,Bob)
+[200,3] -> Page2, Slot1 -> (3,200,Charlie)
+[200,4] -> Page2, Slot2 -> (4,200,David)
+[300,5] -> Page3, Slot1 -> (5,300,Emma)
+[300,6] -> Page3, Slot2 -> (6,300,Frank)
+[400,7] -> Page4, Slot1 -> (7,400,Grace)
+[400,8] -> Page4, Slot2 -> (8,400,Henry)
+[500,9] -> Page5, Slot1 -> (9,500,Ivy)
+[500,10]-> Page5, Slot2 -> (10,500,Jack)
+
+
+🔹 Search Path for (amount=300, id=6)
+
+Step 1: Root
+[300,6] ✔ → Compare (300,6) = root → go to right child [400,8]
+
+Step 2: Intermediate Node
+[400,8] → Compare (300,6) < 400,8 → follow LEFT child
+Leaf Node: [300,5] [300,6]
+
+Step 3: Leaf Node
+Found (300,6) → TID → Page3, Slot2 → fetch heap row (6,300,Frank)
+
+
+🔹 Visual Arrow Representation
+
+            [300,6] root
+             /       \
+            /         \
+         [200,4]    [400,8]  <-- go right from root
+                      /
+                     /  <-- go left child
+          [300,5] [300,6]  <-- leaf, find target here
+
+
+
+
+✅ Key Notes
+	•	Index is sorted by amount → id.
+	•	Leaf nodes store TID, not full row.
+	•	Search only touches root → intermediate → relevant leaf node.
+	•	Efficient for queries using both columns or prefix column (amount).
+	•	Searching by id alone would not use this index efficiently.

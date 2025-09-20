@@ -1,0 +1,41 @@
+EX: mysql
+
+🔹 MySQL (InnoDB) Table Storage
+	1.	Default Storage Engine = InnoDB
+	•	Every table in InnoDB must have a primary key.
+	•	If you don’t define one, MySQL automatically creates a hidden 6-byte key.
+	2.	Clustered Index Table
+	•	InnoDB stores the table itself as a B+ Tree (clustered index) organized by primary key.
+	•	Leaf nodes of this B+ Tree contain the full row data.
+	•	There is no separate heap like Postgres.
+	3.	Secondary Indexes
+	•	B+ Tree leaf nodes store key + primary key → extra lookup to find row in clustered index.\
+
+
+Clustered PK B+ Tree (table itself)
+------------------------------------------
+              [4]                      <-- root
+          /          \
+      [2]              [6]             <-- intermediate nodes
+    /     \          /      \
+[1,2]   [3,4]     [5,6]    [7,8]       <-- leaf nodes
+
+Leaf Nodes (Full Row Data):
+------------------------------------------
+Leaf 1:
+[1] -> (id=1, roll=101, Alice)
+[2] -> (id=2, roll=102, Bob)
+
+Leaf 2:
+[3] -> (id=3, roll=103, Charlie)
+[4] -> (id=4, roll=104, David)
+
+Leaf 3:
+[5] -> (id=5, roll=105, Emma)
+[6] -> (id=6, roll=106, Frank)
+
+Leaf 4:
+[7] -> (id=7, roll=107, Grace)
+[8] -> (id=8, roll=108, Henry)
+
+✅ Query example: WHERE id=7 → traverse B+ Tree → leaf 4 → full row (7,107,Grace)

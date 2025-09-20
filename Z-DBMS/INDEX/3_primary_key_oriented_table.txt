@@ -1,0 +1,28 @@
+Index is orianted like:
+
+
+                  [8]                       <-- root
+           /                \
+     [4]                       [12]       <-- level 2 (intermediate nodes)
+   /     \                   /       \
+[1,2,3]  [5,6,7,8]        [9,10,11]  [13,14,15]  <-- leaf nodes (full row stored)
+
+Leaf nodes store full row data:
+[1] -> (id=1, Alice)
+[2] -> (id=2, Bob)
+[3] -> (id=3, Charlie)
+[4] -> (id=4, David)
+[5] -> (id=5, Emma)
+[6] -> (id=6, Frank)
+[7] -> (id=7, Grace)
+[8] -> (id=8, Henry)
+[9] -> (id=9, Ivy)
+[10]-> (id=10, Jack)
+[11]-> (id=11, Kate)
+[12]-> (id=12, Leo)
+[13]-> (id=13, Maya)
+[14]-> (id=14, Nick)
+[15]-> (id=15, Olivia)
+
+Search Example:
+	•	Root → [12] → go left child → [9,10,11] → leaf → full row (id=11, Kate).

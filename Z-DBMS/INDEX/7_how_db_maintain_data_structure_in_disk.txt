@@ -1,0 +1,117 @@
+🔹 Disk File Representation
+
++----------------------------+
+| Keys: 200, 400             |
+| ChildPages: 2 | 3 | 4      |
++----------------------------+
+
+Page2 (Leaf)
++----------------------------+
+| Keys: 100,1 | 100,2        |
+| RowPointers: TID1 | TID2    |
+| NextLeaf: Page3             |
++----------------------------+
+
+Page3 (Leaf)
++----------------------------+
+| Keys: 200,3 | 200,4        |
+| RowPointers: TID3 | TID4    |
+| NextLeaf: Page4             |
++----------------------------+
+
+Page4 (Leaf)
++----------------------------+
+| Keys: 300,5 | 300,6        |
+| RowPointers: TID5 | TID6    |
+| NextLeaf: Page5             |
++----------------------------+
+
+Page5 (Leaf)
++----------------------------+
+| Keys: 400,7 | 400,8        |
+| RowPointers: TID7 | TID8    |
+| NextLeaf: Page6             |
++----------------------------+
+
+Page6 (Leaf)
++----------------------------+
+| Keys: 500,9 | 500,10       |
+| RowPointers: TID9 | TID10   |
+| NextLeaf: NULL              |
++----------------------------+
+
+
+
+
+                      [200 | 400]           <-- Root (Page1)
+                     /    |    \
+                Page2   Page3  Page4
+           [100,1|100,2] [200,3|200,4] [300,5|300,6]
+           Page5          Page6
+      [400,7|400,8]    [500,9|500,10]
+
+
+
+
+
+Heap Page1
++----------------------------+
+| Slot1 -> (1,100,Alice)     |
+| Slot2 -> (2,100,Bob)       |
++----------------------------+
+
+Heap Page2
++----------------------------+
+| Slot1 -> (3,200,Charlie)   |
+| Slot2 -> (4,200,David)     |
++----------------------------+
+
+Heap Page3
++----------------------------+
+| Slot1 -> (5,300,Emma)      |
+| Slot2 -> (6,300,Frank)     |
++----------------------------+
+
+Heap Page4
++----------------------------+
+| Slot1 -> (7,400,Grace)     |
+| Slot2 -> (8,400,Henry)     |
++----------------------------+
+
+Heap Page5
++----------------------------+
+| Slot1 -> (9,500,Ivy)       |
+| Slot2 -> (10,500,Jack)     |
++----------------------------+
+
+
+
+🔹 Step-by-Step Search in Postgres
+	1.	Start at Root Page1 (internal node)
+	•	Keys: [200 | 400]
+	•	Compare (300,6) → between 200 & 400 → go ChildPage3
+	2.	Go to Leaf Page4
+	•	Keys: [300,5 | 300,6]
+	•	Compare → find (300,6) → get RowPointer/TID → Page3, Slot2
+	3.	Fetch row from Heap Page3
+	•	Heap Page3: Slot2 → (6,300,Frank)
+	•	Return row to query
+
+
+
+Root Page1 [200|400]
+        |
+        v
+Leaf Page4 [300,5|300,6]  --> TID/Page3,Slot2
+        |
+        v
+Heap Page3 Slot2 --> (6,300,Frank)
+
+
+🔹 Notes
+	•	Disk pages are read: Root → Leaf → Heap
+	•	Leaf nodes store TID (Page+Slot) → direct access to row
+	•	Sequential leaf links allow fast range scans if needed
+
+
+
