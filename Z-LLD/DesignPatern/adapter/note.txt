@@ -1,6 +1,7 @@
 🔹 Definition
 
-Adapter Pattern is a structural design pattern that allows objects with incompatible interfaces to work together by converting one interface into another.
+Adapter Pattern is a structural design pattern that allows objects with incompatible interfaces
+to work together by converting one interface into another.
 
 Short version for interview:
 
