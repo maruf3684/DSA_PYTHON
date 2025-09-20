@@ -1,0 +1,20 @@
+🔹 Definition
+
+Adapter Pattern is a structural design pattern that allows objects with incompatible interfaces to work together by converting one interface into another.
+
+Short version for interview:
+
+“Adapter lets classes with incompatible interfaces collaborate by converting one interface to another.”
+
+⸻
+
+🔹 Why use it? (Benefits)
+	1.	Reusability → Use existing classes even if their interface doesn’t match what you need.
+	2.	Compatibility → Lets you integrate legacy code or third-party libraries.
+	3.	Decouples code → Client doesn’t need to know about the adaptation.
+
+⸻
+
+🔹 Real-world Example
+
+Imagine you have a US plug but your socket is EU type. You need an adapter to connect them.
