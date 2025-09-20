@@ -1,0 +1,19 @@
+✅ If interviewer asks: “What is the Factory Pattern?”
+
+You can say:
+👉 Factory Pattern is a creational design pattern that provides an interface for creating objects, but lets the subclasses decide which class to instantiate.
+In short: It hides the object creation logic and makes code more flexible.
+
+⸻
+
+✅ If interviewer asks: “What is the Abstract Factory Pattern?”
+
+You can say:
+👉 Abstract Factory Pattern is a creational design pattern that provides an interface to create a group (or family) of related objects, without specifying their concrete classes.
+In short: It’s like a factory of factories.
+
+⸻
+
+📝 Super Easy Memory Trick
+	•	Factory Method → one factory, one product.
+	•	Abstract Factory → one factory, many related products.

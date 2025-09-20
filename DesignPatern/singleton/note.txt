@@ -1,0 +1,14 @@
+🔹 Definition
+
+Singleton Pattern ensures that a class has only one instance and provides a global point of access to it.
+
+Short version for interview:
+
+“Singleton ensures a class has only one instance and gives a global access point to it.”
+
+⸻
+
+🔹 Why use it? (Benefits)
+	1.	Single point of control → Only one instance manages shared resources (e.g., config, logging, DB connection).
+	2.	Memory efficiency → No unnecessary multiple objects.
+	3.	Global access → Any part of the code can access the same instance.
