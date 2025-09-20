@@ -1,0 +1,21 @@
+🔹 Definition
+
+Strategy Pattern is a behavioral design pattern that defines a family of algorithms, encapsulates each one, and makes them interchangeable at runtime.
+
+Short one-liner for interviews:
+
+“Strategy pattern lets an object choose from a family of algorithms dynamically without changing its code.”
+
+⸻
+
+🔹 Why use it? (Benefits)
+	1.	Encapsulates algorithms → Each algorithm is in its own class.
+	2.	Interchangeable behavior → Switch strategies at runtime.
+	3.	Simplifies code → Avoids lots of if-else for selecting algorithms.
+	4.	Follows Open/Closed Principle → Add new strategies without modifying existing code.
+
+⸻
+
+🔹 Real-world Example
+
+Imagine a payment system where a user can pay using CreditCard, PayPal, or Bitcoin. The client wants to choose the payment method dynamically.

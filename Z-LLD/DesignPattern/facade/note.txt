@@ -1,0 +1,16 @@
+🔹 Definition
+
+Facade Pattern provides a simplified interface to a complex subsystem,
+ making it easier for clients to use without dealing with all the internal details.
+
+Short one-liner for interviews:
+
+“Facade pattern gives a simple interface to a complex system, hiding the internal complexity from the client.”
+
+⸻
+
+🔹 Why use it? (Benefits)
+	1.	Simplifies client interaction → Client doesn’t need to know subsystem details.
+	2.	Reduces coupling → Client depends only on the Facade, not multiple classes.
+	3.	Improves readability and maintainability → One point of access to the subsystem.
+	4.	Flexible → Internals can change without affecting the client.

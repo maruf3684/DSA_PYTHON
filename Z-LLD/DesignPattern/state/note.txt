@@ -1,0 +1,15 @@
+🔹 Definition
+
+State Pattern is a behavioral design pattern that allows an object to change its behavior when its internal state changes.
+
+Short one-liner for interviews:
+
+“State pattern lets an object change its behavior dynamically based on its internal state.”
+
+⸻
+
+🔹 Why use it? (Benefits)
+	1.	Encapsulates state-specific behavior → Each state has its own class.
+	2.	Simplifies complex conditional logic → Avoids huge if-else or switch-case statements.
+	3.	Dynamic behavior changes → The object can switch states at runtime.
+	4.	Follows Open/Closed Principle → Add new states without modifying existing code.
