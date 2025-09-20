@@ -1,0 +1,16 @@
+🔹 Definition
+
+Prototype Pattern is a creational design pattern that creates new objects by copying an existing object
+for avoiding heavy calculation or api call if object is complex (the prototype) instead of creating from scratch.
+
+Short version for interview:
+
+“Prototype pattern clones existing objects to create new ones, avoiding costly creation from scratch.”
+
+⸻
+
+🔹 Why use it? (Benefits)
+	1.	Fast object creation → Especially if creating the object from scratch is expensive.
+	2.	Avoid repetitive code → Just clone and modify if needed.
+	3.	Preserve state → The new object starts with the same state as the prototype.
+	4.	Flexibility → Can dynamically decide which object to clone at runtime.

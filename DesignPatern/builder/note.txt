@@ -1,0 +1,14 @@
+🔹 Definition
+
+Builder Pattern is a creational design pattern that separates the construction of a complex object from its representation,
+allowing the same construction process to create different representations.
+
+Short version for interview:
+“Builder pattern separates object construction from its representation, making it easier to create complex objects step by step.”
+
+
+🔹 Why use it? (Benefits)
+	1.	Handles complex objects → Useful when an object has many optional parts or steps.
+	2.	Step-by-step construction → You can create variations of the object using the same process.
+	3.	Readable and maintainable → Reduces constructor parameter overload (no huge __init__ with 10 arguments).
+	4.	Flexible representation → The same construction process can produce different object representations.
