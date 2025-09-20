@@ -1,0 +1,15 @@
+🔹 Definition
+
+Decorator Pattern is a structural design pattern that dynamically
+adds new behavior or responsibilities to an object without modifying its original class.
+
+Short one-liner for interviews:
+
+“Decorator adds new behavior to an object dynamically without changing its class.”
+
+⸻
+
+🔹 Why use it? (Benefits)
+	1.	Extends functionality without subclassing → avoids explosion of subclasses.
+	2.	Flexible and reusable → you can mix and match decorators at runtime.
+	3.	Keeps original class unchanged → follows Open/Closed Principle.
