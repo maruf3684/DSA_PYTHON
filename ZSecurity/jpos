@@ -1,0 +1,8 @@
+
+⸻
+
+🔹 Recommendation
+	•	Server app → use jPOS
+	•	Especially for fintech or banking-grade production.
+	•	You can still expose a Spring Boot HTTP interface for admin or REST APIs alongside jPOS.
+	•	Client app → lightweight (Socket + j8583) OR jPOS if you want full bidirectional MUX
